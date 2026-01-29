@@ -10,7 +10,7 @@
 
 ## 🎯 Live Demo
 
-**[View Portfolio →](https://tiwalade-portfolio.vercel.app)** *(replace with your deployment URL)*
+**[View Portfolio →](https://frontend-portfolio-ten-black.vercel.app/)**
 
 ---
 
