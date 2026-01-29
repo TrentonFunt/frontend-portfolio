@@ -164,9 +164,13 @@ export function Terminal({ onToggleMode }: TerminalProps) {
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
+      // Disable backtick toggle on mobile
       if (e.key === '`') {
-        e.preventDefault()
-        onToggleMode()
+        const isMobile = window.innerWidth < 640
+        if (!isMobile) {
+          e.preventDefault()
+          onToggleMode()
+        }
         return
       }
 
@@ -261,9 +265,21 @@ export function Terminal({ onToggleMode }: TerminalProps) {
           </div>
           <span className="ml-2 sm:ml-4 text-terminal-fg-muted text-xs sm:text-sm ">visitor@portfolio:~</span>
         </div>
-        <button onClick={onToggleMode} className="text-terminal-fg-muted text-xs sm:text-sm hover:text-terminal-fg transition-colors whitespace-nowrap">
+        <motion.button 
+          onClick={onToggleMode} 
+          className="text-terminal-prompt text-xs sm:text-sm hover:text-terminal-fg transition-colors whitespace-nowrap font-semibold border border-terminal-prompt px-3 py-1 rounded"
+          animate={{ 
+            scale: [1, 1.05, 1],
+            opacity: [0.8, 1, 0.8]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
           Switch to GUI →
-        </button>
+        </motion.button>
       </div>
 
       {/* Terminal Body */}
@@ -280,8 +296,9 @@ export function Terminal({ onToggleMode }: TerminalProps) {
             <div className="text-terminal-fg-muted mb-4">
               <div className="text-terminal-prompt mb-2">Welcome to my portfolio terminal!</div>
               <div>Type <span className="text-(--syntax-string)">'help'</span> to see available commands.</div>
-              <div>Press <span className="text-(--syntax-string)">'`'</span> (backtick) or click "Switch to GUI" to exit.</div>
-              <div className="mt-2 text-xs">Try: <span className="text-(--syntax-function)">neofetch</span>, <span className="text-(--syntax-function)">theme dracula</span>, <span className="text-(--syntax-function)">sl</span></div>
+              <div className="hidden sm:block">Press <span className="text-(--syntax-string)">'`'</span> (backtick) or click "Switch to GUI" to exit.</div>
+              <div className="sm:hidden">Click the pulsing "Switch to GUI" button to exit.</div>
+              <div className="mt-2 text-xs">Try: <span className="text-(--syntax-function)">neofetch</span>, <span className="text-(--syntax-function)">theme latte</span>, <span className="text-(--syntax-function)">fortune</span>, <span className="text-(--syntax-function)">matrix</span></div>
             </div>
 
             {history.map((entry) => (

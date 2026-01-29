@@ -12,10 +12,13 @@ export function SiteLayout() {
     setIsTerminalMode((prev) => !prev)
   }, [])
 
-  // Listen for backtick key to toggle terminal
+  // Listen for backtick key to toggle terminal (desktop only)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Backtick key (`) toggles terminal mode
+      // Backtick key (`) toggles terminal mode - disabled on mobile
+      const isMobile = window.innerWidth < 640
+      if (isMobile) return
+      
       if (e.key === '`' && !e.ctrlKey && !e.altKey && !e.metaKey) {
         // Don't toggle if user is typing in an input
         const target = e.target as HTMLElement

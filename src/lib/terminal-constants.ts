@@ -1,4 +1,4 @@
-export type ThemeName = 'default' | 'dracula' | 'monokai' | 'gruvbox'
+export type ThemeName = 'default' | 'dracula' | 'monokai' | 'gruvbox' | 'latte'
 
 export const THEMES: Record<ThemeName, Record<string, string>> = {
   default: {
@@ -44,6 +44,17 @@ export const THEMES: Record<ThemeName, Record<string, string>> = {
     '--syntax-function': '#fb4934',
     '--syntax-variable': '#83a598',
     '--syntax-error': '#fb4934',
+  },
+  latte: {
+    '--terminal-bg': '#f5f0e8',
+    '--terminal-bg-alt': '#ebe5dc',
+    '--terminal-fg': '#4a4238',
+    '--terminal-fg-muted': '#7c7264',
+    '--terminal-prompt': '#8b5a3c',
+    '--syntax-string': '#6b7c3f',
+    '--syntax-function': '#9c4f5c',
+    '--syntax-variable': '#5a7a8c',
+    '--syntax-error': '#c5594a',
   },
 }
 

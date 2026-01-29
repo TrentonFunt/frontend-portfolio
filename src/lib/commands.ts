@@ -326,9 +326,9 @@ export const commands: Command[] = [
   {
     name: 'theme',
     description: 'Change terminal theme',
-    usage: 'theme [dracula|monokai|gruvbox|default]',
+    usage: 'theme [dracula|monokai|gruvbox|latte|default]',
     execute: (args) => {
-      const validThemes = ['dracula', 'monokai', 'gruvbox', 'default']
+      const validThemes = ['dracula', 'monokai', 'gruvbox', 'latte', 'default']
       
       if (args.length === 0) {
         return {
@@ -339,6 +339,7 @@ export const commands: Command[] = [
             '  dracula   - Purple and pink hues',
             '  monokai   - Classic warm tones',
             '  gruvbox   - Retro earthy colors',
+            '  latte     - Light cream theme',
             '  default   - Original terminal theme',
             '',
             'Usage: theme [name]',
@@ -411,6 +412,168 @@ export const commands: Command[] = [
       type: 'navigate',
       content: 'Switching to GUI mode...',
       navigateTo: 'gui',
+    }),
+  },
+  {
+    name: 'banner',
+    description: 'Display welcome banner',
+    execute: () => ({
+      type: 'text',
+      content: [
+        '',
+        '╔════════════════════════════════════════════════════╗',
+        '║                                                    ║',
+        '║     ████████╗██╗██╗    ██╗ █████╗ ██╗      █████╗ ║',
+        '║     ╚══██╔══╝██║██║    ██║██╔══██╗██║     ██╔══██╗║',
+        '║        ██║   ██║██║ █╗ ██║███████║██║     ███████║║',
+        '║        ██║   ██║██║███╗██║██╔══██║██║     ██╔══██║║',
+        '║        ██║   ██║╚███╔███╔╝██║  ██║███████╗██║  ██║║',
+        '║        ╚═╝   ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝║',
+        '║                                                    ║',
+        '║             Frontend Developer Portfolio           ║',
+        '║            React • TypeScript • Tailwind           ║',
+        '║                                                    ║',
+        '╚════════════════════════════════════════════════════╝',
+        '',
+        '  Type "help" to see available commands',
+        '',
+      ].join('\n'),
+    }),
+  },
+  {
+    name: 'weather',
+    description: 'Check the weather (spoiler: always coding)',
+    execute: () => ({
+      type: 'text',
+      content: [
+        '',
+        '🌤️  Current Conditions',
+        '   ━━━━━━━━━━━━━━━━━',
+        '',
+        '   Location:    Developer\'s Desk',
+        '   Temperature: 72°F (Perfect for coding)',
+        '   Conditions:  100% chance of bug fixes',
+        '   Humidity:    Coffee at optimal levels',
+        '   Wind:        Fans running smoothly',
+        '',
+        '   Forecast: Continuous integration expected',
+        '',
+      ].join('\n'),
+    }),
+  },
+  {
+    name: 'fortune',
+    description: 'Get a random developer quote',
+    execute: () => {
+      const fortunes = [
+        '"Code is like humor. When you have to explain it, it\'s bad." – Cory House',
+        '"First, solve the problem. Then, write the code." – John Johnson',
+        '"Experience is the name everyone gives to their mistakes." – Oscar Wilde',
+        '"In order to be irreplaceable, one must always be different." – Coco Chanel',
+        '"Java is to JavaScript what car is to carpet." – Chris Heilmann',
+        '"Before software can be reusable, it first has to be usable." – Ralph Johnson',
+        '"Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away." – Antoine de Saint-Exupéry',
+        '"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." – Martin Fowler'
+      ]
+      const random = fortunes[Math.floor(Math.random() * fortunes.length)]
+      return {
+        type: 'text',
+        content: `\n${random}\n`,
+      }
+    },
+  },
+  {
+    name: 'ping',
+    description: 'Ping a server',
+    usage: 'ping [hostname]',
+    execute: (args) => {
+      const host = args[0] || 'localhost'
+      return {
+        type: 'text',
+        content: [
+          '',
+          `PING ${host} (127.0.0.1): 56 data bytes`,
+          `64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.042 ms`,
+          `64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.037 ms`,
+          `64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.041 ms`,
+          '',
+          `--- ${host} ping statistics ---`,
+          `3 packets transmitted, 3 packets received, 0.0% packet loss`,
+          '',
+        ].join('\n'),
+      }
+    },
+  },
+  {
+    name: 'tree',
+    description: 'Display directory tree',
+    execute: () => ({
+      type: 'text',
+      content: [
+        '',
+        '~/portfolio',
+        '├── about.md',
+        '├── contact.md',
+        '├── resume.pdf',
+        '└── projects/',
+        '    ├── gbese-gamified-debt-collection',
+        '    ├── caseforge-legal-case-management',
+        '    ├── rise-academy-learning-platform',
+        '    └── physics-puzzle-game',
+        '',
+      ].join('\n'),
+    }),
+  },
+  {
+    name: 'cowsay',
+    description: 'Make a cow say something',
+    usage: 'cowsay [message]',
+    execute: (args) => {
+      const message = args.join(' ') || 'Hire me!'
+      const length = message.length + 2
+      const border = '-'.repeat(length)
+      
+      return {
+        type: 'text',
+        content: [
+          '',
+          ` ${border}`,
+          `< ${message} >`,
+          ` ${border}`,
+          '        \\   ^__^',
+          '         \\  (oo)\\_______',
+          '            (__)\\       )\\/\\',
+          '                ||----w |',
+          '                ||     ||',
+          '',
+        ].join('\n'),
+      }
+    },
+  },
+  {
+    name: 'matrix',
+    description: 'Enter the Matrix (Easter Egg)',
+    execute: () => ({
+      type: 'text',
+      content: [
+        '',
+        '▓█████▄ ▓█████  ▄████▄   ▒█████  ▓█████▄ ▓█████ ',
+        '▒██▀ ██▌▓█   ▀ ▒██▀ ▀█  ▒██▒  ██▒▒██▀ ██▌▓█   ▀ ',
+        '░██   █▌▒███   ▒▓█    ▄ ▒██░  ██▒░██   █▌▒███   ',
+        '░▓█▄   ▌▒▓█  ▄ ▒▓▓▄ ▄██▒▒██   ██░░▓█▄   ▌▒▓█  ▄ ',
+        '░▒████▓ ░▒████▒▒ ▓███▀ ░░ ████▓▒░░▒████▓ ░▒████▒',
+        ' ▒▒▓  ▒ ░░ ▒░ ░░ ░▒ ▒  ░░ ▒░▒░▒░  ▒▒▓  ▒ ░░ ▒░ ░',
+        ' ░ ▒  ▒  ░ ░  ░  ░  ▒     ░ ▒ ▒░  ░ ▒  ▒  ░ ░  ░',
+        ' ░ ░  ░    ░   ░        ░ ░ ░ ▒   ░ ░  ░    ░   ',
+        '   ░       ░  ░░ ░          ░ ░     ░       ░  ░',
+        ' ░             ░                  ░              ',
+        '',
+        '  Wake up, Neo... The portfolio has you...',
+        '  Follow the white rabbit... to tiwatide23@gmail.com',
+        '',
+        '  🐰 💊 🔴 🔵',
+        '',
+      ].join('\n'),
     }),
   },
 ]
@@ -486,7 +649,7 @@ export function getAutocompleteSuggestions(input: string): string[] {
   }
 
   if (commandName === 'theme') {
-    const themes = ['dracula', 'monokai', 'gruvbox', 'default']
+    const themes = ['dracula', 'monokai', 'gruvbox', 'latte', 'default']
     return themes.filter((t) => t.startsWith(partial)).slice(0, 5)
   }
 
