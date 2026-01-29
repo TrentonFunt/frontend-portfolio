@@ -8,6 +8,7 @@ import {
 } from '@/lib/commands'
 import { THEMES, BOOT_SEQUENCE, type ThemeName } from '@/lib/terminal-constants'
 import { Confetti, TrainAnimation, RickrollAnimation } from '@/components/TerminalAnimations'
+import resumePdf from '@/assets/TIWALADE-ADEGOKE-Resume.pdf'
 
 interface HistoryEntry {
   id: number
@@ -114,7 +115,7 @@ export function Terminal({ onToggleMode }: TerminalProps) {
 
         if (out.type === 'download') {
           const link = document.createElement('a')
-          link.href = '/TIWALADE-ADEGOKE-Resume.pdf'
+          link.href = resumePdf
           link.download = 'Tiwalade-Adegoke-Resume.pdf'
           link.click()
         }

@@ -7,6 +7,7 @@ import { TiltCard } from '@/components/TiltCard'
 import { MagneticButton } from '@/components/MagneticButton'
 import { Typewriter } from '@/components/Typewriter'
 import { CodeSnippet } from '@/components/CodeSnippet'
+import resumePdf from '@/assets/TIWALADE-ADEGOKE-Resume.pdf'
 
 export function Home() {
   const navigate = useNavigate()
@@ -287,7 +288,7 @@ export function Home() {
                 tiwatide23@gmail.com
               </a>
               <a
-                href="/TIWALADE-ADEGOKE-Resume.pdf"
+                href={resumePdf}
                 download="Tiwalade-Adegoke-Resume.pdf"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
               >
