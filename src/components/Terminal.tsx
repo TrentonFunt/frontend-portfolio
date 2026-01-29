@@ -248,8 +248,8 @@ export function Terminal({ onToggleMode }: TerminalProps) {
   return (
     <div className="fixed inset-0 bg-terminal-bg z-40 flex flex-col font-mono" onClick={focusInput}>
       {/* Terminal Header */}
-      <div className="flex items-center justify-between px-4 py-2 border-b border-(--border-terminal) bg-terminal-bg-alt">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between px-2 sm:px-4 py-2 border-b border-(--border-terminal) bg-terminal-bg-alt">
+        <div className="flex items-center gap-1 sm:gap-2">
           <div className="flex gap-1.5">
             <button
               onClick={onToggleMode}
@@ -259,9 +259,9 @@ export function Terminal({ onToggleMode }: TerminalProps) {
             <div className="w-3 h-3 rounded-full bg-(--traffic-yellow)" />
             <div className="w-3 h-3 rounded-full bg-(--traffic-green)" />
           </div>
-          <span className="ml-4 text-terminal-fg-muted text-sm">visitor@portfolio:~</span>
+          <span className="ml-2 sm:ml-4 text-terminal-fg-muted text-xs sm:text-sm ">visitor@portfolio:~</span>
         </div>
-        <button onClick={onToggleMode} className="text-terminal-fg-muted text-sm hover:text-terminal-fg transition-colors">
+        <button onClick={onToggleMode} className="text-terminal-fg-muted text-xs sm:text-sm hover:text-terminal-fg transition-colors whitespace-nowrap">
           Switch to GUI →
         </button>
       </div>

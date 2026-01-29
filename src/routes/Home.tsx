@@ -22,11 +22,11 @@ export function Home() {
 
       <section className="max-w-(--terminal-max) mx-auto px-4 py-16 md:py-24 relative">
         <div 
-          className="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-terminal-prompt/20 rounded-full blur-3xl pointer-events-none" 
+          className="absolute -top-10 md:-top-20 left-1/2 -translate-x-1/2 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-terminal-prompt/20 rounded-full blur-3xl pointer-events-none" 
           aria-hidden="true" 
         />
         <div 
-          className="absolute -top-10 left-1/3 w-64 h-64 bg-(--syntax-function)/15 rounded-full blur-3xl pointer-events-none" 
+          className="absolute -top-5 md:-top-10 left-1/4 md:left-1/3 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-(--syntax-function)/15 rounded-full blur-3xl pointer-events-none" 
           aria-hidden="true" 
         />
         
@@ -48,15 +48,15 @@ export function Home() {
               </div>
               
               <div className="mb-8 pl-0">
-                <h1 className="text-terminal-fg mb-4">
+                <h1 className="text-terminal-fg mb-4 text-2xl sm:text-3xl md:text-4xl">
                   <Typewriter text="Tiwalade Adegoke" speed={80} delay={300} showCursorAfterComplete />
                 </h1>
-                <p className="text-lg mb-2">
+                <p className="text-base sm:text-lg mb-2">
                   <span className="bg-linear-to-r from-(--syntax-function) via-terminal-prompt to-(--syntax-string) bg-clip-text text-transparent font-semibold">
                     Frontend Developer
                   </span>
                 </p>
-                <p className="text-terminal-fg-muted max-w-2xl leading-relaxed text-lg">
+                <p className="text-terminal-fg-muted max-w-2xl leading-relaxed text-sm sm:text-base md:text-lg">
                   I build fast, accessible web applications with React and TypeScript. 
                   Strong focus on clean architecture, state management, and delivering 
                   polished user experiences. Type <span className="text-(--syntax-string)">`help`</span> to explore, 
@@ -64,25 +64,25 @@ export function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-4 text-sm">
+              <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm">
                 <MagneticButton
                   as="a"
                   href="#projects"
-                  className="inline-flex items-center gap-2 px-4 py-2 border border-terminal-prompt text-terminal-prompt rounded hover:bg-terminal-prompt hover:text-terminal-bg transition-colors"
+                  className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-terminal-prompt text-terminal-prompt rounded hover:bg-terminal-prompt hover:text-terminal-bg transition-colors"
                 >
                   <span>→</span> view projects
                 </MagneticButton>
                 <MagneticButton
                   as="a"
                   href="#about"
-                  className="inline-flex items-center gap-2 px-4 py-2 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
+                  className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
                 >
                   <span>→</span> about me
                 </MagneticButton>
                 <MagneticButton
                   as="a"
                   href="#contact"
-                  className="inline-flex items-center gap-2 px-4 py-2 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
+                  className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
                 >
                   <span>→</span> contact
                 </MagneticButton>
@@ -164,22 +164,22 @@ export function Home() {
           <FadeInSection>
             <div className="terminal-window">
               <div className="terminal-body">
-                <div className="mb-6">
+                <div className="mb-6 text-sm sm:text-base">
                   <span className="text-terminal-prompt">$</span>
                   <span className="ml-2">cat about.md</span>
                 </div>
                 
-                <div className="space-y-6 max-w-(--content-max)">
-                  <h2 className="text-terminal-fg">
+                <div className="space-y-4 sm:space-y-6 max-w-(--content-max)">
+                  <h2 className="text-terminal-fg text-xl sm:text-2xl md:text-3xl">
                     # About Me
                   </h2>
-                  <p className="text-terminal-fg-muted leading-relaxed">
+                  <p className="text-terminal-fg-muted leading-relaxed text-sm sm:text-base">
                     Frontend Developer with a passion for building intuitive, performant web applications. 
                     I've shipped production code across different domains—from fintech platforms handling real transactions 
                     to interactive learning systems and even physics-based games. What stays constant is my focus on 
                     clean component architecture, predictable state management, and pixel-perfect UI.
                   </p>
-                  <p className="text-terminal-fg-muted leading-relaxed">
+                  <p className="text-terminal-fg-muted leading-relaxed text-sm sm:text-base">
                     I thrive in collaborative environments, enjoy owning features end-to-end, and care deeply about 
                     code quality and user experience. Based in Nigeria, open to remote opportunities worldwide.
                   </p>
@@ -267,30 +267,30 @@ export function Home() {
       <section id="contact" className="py-16 md:py-24 border-t border-(--border-terminal)">
         <div className="max-w-(--terminal-max) mx-auto px-4">
           <FadeInSection className="text-center max-w-(--content-max) mx-auto">
-            <div className="mb-6">
+            <div className="mb-6 text-sm sm:text-base">
               <span className="text-terminal-prompt">$</span>
               <span className="ml-2">./contact --send-message</span>
             </div>
             
-            <h2 className="text-terminal-fg mb-4">
+            <h2 className="text-terminal-fg mb-4 text-xl sm:text-2xl md:text-3xl">
               Let's Build Something
             </h2>
-            <p className="text-terminal-fg-muted mb-8 leading-relaxed">
+            <p className="text-terminal-fg-muted mb-8 leading-relaxed text-sm sm:text-base">
               I'm always interested in hearing about new projects, opportunities, 
               or just chatting about the web. Drop me a line.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
               <a
                 href="mailto:tiwatide23@gmail.com"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-terminal-prompt text-terminal-bg font-semibold rounded hover:bg-terminal-fg transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-terminal-prompt text-terminal-bg font-semibold rounded hover:bg-terminal-fg transition-colors text-sm sm:text-base"
               >
                 tiwatide23@gmail.com
               </a>
               <a
                 href={resumePdf}
                 download="Tiwalade-Adegoke-Resume.pdf"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base"
               >
                 ↓ Resume
               </a>
@@ -298,7 +298,7 @@ export function Home() {
                 href="https://github.com/TrentonFunt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base"
               >
                 GitHub
               </a>
@@ -306,7 +306,7 @@ export function Home() {
                 href="https://www.linkedin.com/in/tiwalade-adegoke"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base"
               >
                 LinkedIn
               </a>
