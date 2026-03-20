@@ -65,7 +65,7 @@ export function Project() {
                   <p className="text-xs sm:text-sm font-semibold text-terminal-fg-muted uppercase tracking-wider mb-1 sm:mb-2">
                     Role
                   </p>
-                  <p className="text-xl sm:text-2xl font-bold text-terminal-fg">{project.role || 'Frontend Developer'}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-terminal-fg">{project.role || 'Fullstack Developer'}</p>
                 </div>
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-terminal-fg-muted uppercase tracking-wider mb-1 sm:mb-2">
