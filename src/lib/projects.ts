@@ -64,6 +64,19 @@ export const projects: Project[] = [
     url: 'https://my-job-board-peach.vercel.app',
     role: 'Solo Developer',
   },
+  {
+    id: '5',
+    slug: 'gooeyspot',
+    title: 'TheGooeySpot — Bakery Ordering Platform',
+    shortDescription: 'Fullstack bakery platform with order management and REST APIs',
+    description:
+      'Built a fullstack web platform for a real bakery business to showcase products, manage orders, and handle customer interactions. Developed RESTful APIs using ASP.NET Core for order processing and user management. Implemented authentication and role-based access control using JWT and RBAC. Designed and managed a PostgreSQL database for products, orders, and customer records. Deployed and managed the application on an InterServer VPS using Docker, handling API hosting, server configuration, and production deployments. Built responsive frontend interfaces with React and Tailwind CSS, optimized for mobile users to improve accessibility and conversion for online orders. Implemented payment-ready flows, order tracking systems, and a reward/referral system to support real-world transactions.',
+    year: 2025,
+    technologies: ['ASP.NET Core', 'C#', 'React.js', 'PostgreSQL', 'Docker', 'Tailwind CSS', 'JWT'],
+    image: '/images/projects/gooeyspot.png',
+    url: 'https://thegooeyspot.com',
+    role: 'Fullstack Developer (Owner)',
+  },
 ]
 
 export function getProjectBySlug(slug: string): Project | undefined {

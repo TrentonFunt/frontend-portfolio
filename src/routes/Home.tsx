@@ -16,8 +16,8 @@ export function Home() {
   return (
     <>
       <Seo
-        title="Tiwalade Adegoke | Frontend Developer"
-        description="Frontend Developer building fast, accessible web applications with React and TypeScript. Experienced in complex state management and scalable component architecture."
+        title="Tiwalade Adegoke | Fullstack Engineer"
+        description="Fullstack Engineer building scalable web applications across frontend and backend systems. Strong in React, TypeScript, ASP.NET, and modern UI development."
       />
 
       <section className="max-w-(--terminal-max) mx-auto px-4 py-16 md:py-24 relative">
@@ -53,13 +53,14 @@ export function Home() {
                 </h1>
                 <p className="text-base sm:text-lg mb-2">
                   <span className="bg-linear-to-r from-(--syntax-function) via-terminal-prompt to-(--syntax-string) bg-clip-text text-transparent font-semibold">
-                    Frontend Developer
+                    Fullstack Engineer
                   </span>
                 </p>
                 <p className="text-terminal-fg-muted max-w-2xl leading-relaxed text-sm sm:text-base md:text-lg">
-                  I build fast, accessible web applications with React and TypeScript. 
-                  Strong focus on clean architecture, state management, and delivering 
-                  polished user experiences. Type <span className="text-(--syntax-string)">`help`</span> to explore, 
+                  I build scalable web applications across frontend and backend systems. 
+                  Strong in React, TypeScript, ASP.NET, and modern UI development — with hands-on 
+                  experience designing RESTful APIs, managing relational databases, and implementing 
+                  secure authentication. Type <span className="text-(--syntax-string)">`help`</span> to explore, 
                   or scroll to browse the GUI way.
                 </p>
               </div>
@@ -174,14 +175,14 @@ export function Home() {
                     # About Me
                   </h2>
                   <p className="text-terminal-fg-muted leading-relaxed text-sm sm:text-base">
-                    Frontend Developer with a passion for building intuitive, performant web applications. 
-                    I've shipped production code across different domains—from fintech platforms handling real transactions 
-                    to interactive learning systems and even physics-based games. What stays constant is my focus on 
-                    clean component architecture, predictable state management, and pixel-perfect UI.
+                    Fullstack Engineer with 2+ years experience building scalable web applications across frontend and backend systems.
+                    I've shipped production code across different domains — from a real bakery ordering platform with its own backend infrastructure,
+                    to fintech platforms handling live transactions, e-learning systems, and physics-based games.
+                    Strong in React, TypeScript, ASP.NET, and modern UI development.
                   </p>
                   <p className="text-terminal-fg-muted leading-relaxed text-sm sm:text-base">
-                    I thrive in collaborative environments, enjoy owning features end-to-end, and care deeply about 
-                    code quality and user experience. Based in Nigeria, open to remote opportunities worldwide.
+                    I thrive in collaborative environments, enjoy owning features end-to-end — from API design to polished UI — 
+                    and care deeply about code quality, security, and user experience. Based in Nigeria, open to remote opportunities worldwide.
                   </p>
                   
                   <div className="pt-4 border-t border-(--border-terminal)">
@@ -190,7 +191,21 @@ export function Home() {
                     <div className="mb-6">
                       <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Frontend</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['React.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'].map((skill) => (
+                        {['React.js', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'].map((skill) => (
+                          <span 
+                            key={skill}
+                            className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Backend</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {['C# ASP.NET Core', 'Node.js', 'PHP (Laravel)', 'SQL', 'PostgreSQL', 'RESTful API Design', 'JWT', 'RBAC'].map((skill) => (
                           <span 
                             key={skill}
                             className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
@@ -204,7 +219,7 @@ export function Home() {
                     <div className="mb-6">
                       <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">State & Data</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['Redux', 'Zustand', 'TanStack Query', 'Axios', 'REST APIs', 'JWT Auth'].map((skill) => (
+                        {['Redux Toolkit', 'Zustand', 'TanStack Query', 'Axios', 'REST APIs'].map((skill) => (
                           <span 
                             key={skill}
                             className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
@@ -218,7 +233,7 @@ export function Home() {
                     <div className="mb-6">
                       <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Tools</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['Git', 'GitHub', 'Firebase', 'Figma', 'Chrome DevTools', 'Vercel'].map((skill) => (
+                        {['Git', 'GitHub', 'Firebase', 'Figma', 'Chrome DevTools', 'Vercel', 'Docker', 'Vite', 'Cursor', 'GitHub Copilot'].map((skill) => (
                           <span 
                             key={skill}
                             className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
@@ -232,7 +247,7 @@ export function Home() {
                     <div className="mb-6">
                       <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Testing</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['Jest', 'Vitest', 'React Testing Library', 'Cypress'].map((skill) => (
+                        {['Jest', 'Vitest', 'React Testing Library', 'Cypress', 'NUnit'].map((skill) => (
                           <span 
                             key={skill}
                             className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
@@ -246,7 +261,7 @@ export function Home() {
                     <div>
                       <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Core Concepts</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['Component Architecture', 'Responsive Design', 'Accessibility', 'Performance Optimization', 'Role-Based Access'].map((skill) => (
+                        {['Component Architecture', 'SOLID Principles', 'Responsive Design', 'Accessibility', 'Performance Optimization', 'Role-Based Access Control'].map((skill) => (
                           <span 
                             key={skill}
                             className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
