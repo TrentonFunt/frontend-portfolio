@@ -2,7 +2,10 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './styles/globals.css'
+import { applyGuiTheme, readGuiTheme } from '@/lib/gui-theme'
 import { SiteLayout } from './components/layout/SiteLayout'
+
+applyGuiTheme(readGuiTheme())
 import { Home } from './routes/Home'
 import { Project } from './routes/Project'
 import { NotFound } from './routes/NotFound'
