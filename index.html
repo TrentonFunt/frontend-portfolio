@@ -12,7 +12,14 @@
       (function () {
         try {
           var key = 'portfolio-gui-theme';
-          var theme = localStorage.getItem(key) || 'latte';
+          var mig = 'portfolio-theme-latte-default-v1';
+          var stored = localStorage.getItem(key);
+          var theme = 'latte';
+          if (stored === 'default' && !localStorage.getItem(mig)) {
+            theme = 'latte';
+          } else if (stored) {
+            theme = stored;
+          }
           var bg =
             {
               default: '#0d1117',
@@ -28,6 +35,9 @@
             }[theme] || '#f5f0e8';
           document.documentElement.style.setProperty('--terminal-bg', bg);
           document.documentElement.style.backgroundColor = bg;
+          if (theme === 'latte' || theme === 'day' || theme === 'snow' || theme === 'parchment' || theme === 'dawn') {
+            document.documentElement.classList.add('portfolio-theme-light');
+          }
         } catch (e) {}
       })();
     </script>
