@@ -10,6 +10,14 @@ import {
   type Project,
   type ProjectCategory,
 } from './projects'
+import {
+  DEFAULT_THEME,
+  isLightTheme,
+  THEME_BLURBS,
+  THEME_ORDER,
+  THEMES,
+  type ThemeName,
+} from './portfolio-themes'
 
 export interface CommandOutput {
   type: 'text' | 'html' | 'error' | 'clear' | 'navigate' | 'download' | 'confetti' | 'theme' | 'animation'
@@ -408,22 +416,27 @@ export const commands: Command[] = [
   },
   {
     name: 'theme',
-    description: 'Change terminal theme',
-    usage: 'theme [dracula|monokai|gruvbox|latte|default]',
+    description: 'Change site color theme (CLI + GUI)',
+    usage: `theme [${THEME_ORDER.join('|')}]`,
     execute: (args) => {
-      const validThemes = ['dracula', 'monokai', 'gruvbox', 'latte', 'default']
-      
       if (args.length === 0) {
+        const lines = THEME_ORDER.map((name) => {
+          const pad = name.length >= 12 ? '' : ' '.repeat(12 - name.length)
+          const tags = [
+            name === DEFAULT_THEME ? 'default' : '',
+            isLightTheme(name) ? 'light' : 'dark',
+          ]
+            .filter(Boolean)
+            .join(', ')
+          const suffix = tags ? ` [${tags}]` : ''
+          return `  ${name}${pad} - ${THEME_BLURBS[name]}${suffix}`
+        })
         return {
           type: 'text',
           content: [
             '',
-            'Available themes:',
-            '  dracula   - Purple and pink hues',
-            '  monokai   - Classic warm tones',
-            '  gruvbox   - Retro earthy colors',
-            '  latte     - Light cream theme',
-            '  default   - Original terminal theme',
+            `Available themes (site default: ${DEFAULT_THEME}):`,
+            ...lines,
             '',
             'Usage: theme [name]',
             '',
@@ -431,12 +444,12 @@ export const commands: Command[] = [
         }
       }
 
-      const themeName = args[0].toLowerCase()
-      
-      if (!validThemes.includes(themeName)) {
+      const themeName = args[0].toLowerCase() as ThemeName
+
+      if (!(themeName in THEMES)) {
         return {
           type: 'error',
-          content: `Unknown theme: ${themeName}\nAvailable: ${validThemes.join(', ')}`,
+          content: `Unknown theme: ${themeName}\nAvailable: ${THEME_ORDER.join(', ')}`,
         }
       }
 
@@ -720,8 +733,7 @@ export function getAutocompleteSuggestions(input: string): string[] {
   }
 
   if (commandName === 'theme') {
-    const themes = ['dracula', 'monokai', 'gruvbox', 'latte', 'default']
-    return themes.filter((t) => t.startsWith(partial)).slice(0, 5)
+    return THEME_ORDER.filter((t) => t.startsWith(partial)).slice(0, 10)
   }
 
   return []

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { ThemeName } from '@/lib/terminal-constants'
-import { applyGuiTheme, getGuiThemeNames, readGuiTheme } from '@/lib/gui-theme'
+import { DARK_THEMES, LIGHT_THEME_NAMES } from '@/lib/portfolio-themes'
+import { applyGuiTheme, readGuiTheme, subscribeGuiTheme } from '@/lib/gui-theme'
 
 export function GuiThemePicker() {
   const [theme, setTheme] = useState<ThemeName>(() => readGuiTheme())
@@ -8,6 +9,8 @@ export function GuiThemePicker() {
   useEffect(() => {
     applyGuiTheme(theme)
   }, [theme])
+
+  useEffect(() => subscribeGuiTheme(setTheme), [])
 
   const onChange = (next: ThemeName) => {
     setTheme(next)
@@ -22,11 +25,20 @@ export function GuiThemePicker() {
         className="bg-terminal-bg border border-(--border-terminal) rounded px-2 py-1 text-terminal-fg text-xs focus:outline-none focus:border-terminal-prompt"
         aria-label="Color theme"
       >
-        {getGuiThemeNames().map((name) => (
-          <option key={name} value={name}>
-            {name}
-          </option>
-        ))}
+        <optgroup label="dark">
+          {DARK_THEMES.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </optgroup>
+        <optgroup label="light">
+          {LIGHT_THEME_NAMES.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </optgroup>
       </select>
     </label>
   )
