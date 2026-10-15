@@ -30,7 +30,7 @@ export const projects: Project[] = [
       'TanStack Query',
       'MDX',
     ],
-    image: '/images/projects/eanvest.svg',
+    image: '/images/projects/eanvest.png',
     url: 'https://eanvest.com',
     role: 'Fullstack Engineer',
   },
