@@ -6,7 +6,8 @@ import {
   getAutocompleteSuggestions,
   type CommandOutput,
 } from '@/lib/commands'
-import { THEMES, BOOT_SEQUENCE, type ThemeName } from '@/lib/terminal-constants'
+import { BOOT_SEQUENCE, type ThemeName } from '@/lib/terminal-constants'
+import { applyGuiTheme, readGuiTheme } from '@/lib/gui-theme'
 import { Confetti, TrainAnimation, RickrollAnimation } from '@/components/TerminalAnimations'
 import resumePdf from '@/assets/TIWALADE-ADEGOKE-Resume.pdf'
 import { isBacktickToggleKey } from '@/lib/keyboard'
@@ -33,7 +34,7 @@ export function Terminal({ onToggleMode }: TerminalProps) {
   const [selectedSuggestion, setSelectedSuggestion] = useState(0)
   const [showSuggestions, setShowSuggestions] = useState(true)
   const [showConfetti, setShowConfetti] = useState(false)
-  const [theme, setTheme] = useState<ThemeName>('default')
+  const [theme, setTheme] = useState<ThemeName>(() => readGuiTheme())
   const [isBooting, setIsBooting] = useState(() => !prefersReducedMotion)
   const [bootLines, setBootLines] = useState<string[]>(() => 
     prefersReducedMotion ? ['System ready. Welcome, visitor.'] : []
@@ -62,12 +63,8 @@ export function Terminal({ onToggleMode }: TerminalProps) {
     return () => timers.forEach(clearTimeout)
   }, [prefersReducedMotion, isBooting])
 
-  // Apply theme to terminal
   useEffect(() => {
-    const themeVars = THEMES[theme]
-    Object.entries(themeVars).forEach(([key, value]) => {
-      document.documentElement.style.setProperty(key, value)
-    })
+    applyGuiTheme(theme)
   }, [theme])
 
   // Focus input on mount and when clicking terminal

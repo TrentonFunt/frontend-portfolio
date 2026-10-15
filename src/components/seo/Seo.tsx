@@ -9,7 +9,7 @@ interface SeoProps {
 
 export function Seo({
   title,
-  description = 'Fullstack Engineer portfolio — CLI and GUI modes, projects, and contact.',
+  description = 'Fullstack Engineer portfolio with CLI and GUI modes, projects, and contact.',
   image,
   url,
 }: SeoProps) {

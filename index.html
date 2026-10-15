@@ -4,10 +4,33 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Tiwalade Adegoke — Fullstack Engineer portfolio. React, TypeScript, ASP.NET Core, and production systems across fintech and web products. Open to remote opportunities." />
+    <meta name="description" content="Tiwalade Adegoke, Fullstack Engineer. React, TypeScript, ASP.NET Core. Portfolio projects, experience, and contact." />
     <title>Tiwalade Adegoke | Fullstack Engineer</title>
   </head>
   <body>
+    <script>
+      (function () {
+        try {
+          var key = 'portfolio-gui-theme';
+          var theme = localStorage.getItem(key) || 'latte';
+          var bg =
+            {
+              default: '#0d1117',
+              nord: '#2e3440',
+              'tokyo-night': '#1a1b26',
+              dracula: '#282a36',
+              gruvbox: '#282828',
+              day: '#ffffff',
+              snow: '#eceff4',
+              parchment: '#fdf6e3',
+              dawn: '#faf4ed',
+              latte: '#f5f0e8',
+            }[theme] || '#f5f0e8';
+          document.documentElement.style.setProperty('--terminal-bg', bg);
+          document.documentElement.style.backgroundColor = bg;
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

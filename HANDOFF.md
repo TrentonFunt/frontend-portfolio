@@ -1,7 +1,7 @@
 # HANDOFF — frontend-portfolio
 
 **Branch:** `dev` (integration) — ship to production via PR **`dev` → `main`**  
-**Next step:** Merge open PRs into `dev`, then open release PR to `main`.
+**Next step:** Ship theme work via PR to `dev`, then release PR `dev` → `main`.
 
 ## In flight
 - Fullstack Engineer branding + CV sync on `dev`.
@@ -18,5 +18,6 @@
 - Branch constants: `.claude/repo.json`.
 
 ## Recent decisions
+- **2026-10-15:** Site themes — 10 palettes (5 dark / 5 light), `DEFAULT_THEME=latte`, CLI/GUI synced via `applyGuiTheme`.
 - **2026-10-15:** Integration branch **`dev`**, protected **`main`**.
 - **2026-10-15:** Site positioned as **Fullstack Engineer** portfolio (not frontend-only).
