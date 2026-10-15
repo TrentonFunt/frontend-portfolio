@@ -466,8 +466,8 @@
   padding-right: env(safe-area-inset-right, 0);
   background-color: var(--terminal-bg);
   background-image:
-    linear-gradient(rgba(48, 54, 61, 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(48, 54, 61, 0.35) 1px, transparent 1px);
+    linear-gradient(var(--portfolio-grid-line, rgba(48, 54, 61, 0.35)) 1px, transparent 1px),
+    linear-gradient(90deg, var(--portfolio-grid-line, rgba(48, 54, 61, 0.35)) 1px, transparent 1px);
   background-size: 24px 24px;
   background-position: -1px -1px;
 }

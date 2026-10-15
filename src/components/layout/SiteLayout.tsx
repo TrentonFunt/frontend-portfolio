@@ -25,6 +25,7 @@ export function SiteLayout() {
   }, [])
 
   const openCli = useCallback(() => {
+    applyGuiTheme(readGuiTheme())
     setWantTerminal(true)
     writeStoredViewMode('cli')
   }, [])
@@ -32,10 +33,16 @@ export function SiteLayout() {
   const toggleMode = useCallback(() => {
     setWantTerminal((prev) => {
       const next = !prev
+      if (next) applyGuiTheme(readGuiTheme())
       writeStoredViewMode(next ? 'cli' : 'gui')
       return next
     })
   }, [])
+
+  useEffect(() => {
+    document.body.classList.toggle('gui-mode', !isTerminalMode)
+    return () => document.body.classList.remove('gui-mode')
+  }, [isTerminalMode])
 
   // Backtick toggles CLI ↔ GUI globally (capture phase so it works from terminal input too)
   useEffect(() => {
