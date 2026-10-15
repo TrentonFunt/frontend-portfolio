@@ -8,13 +8,23 @@ import {
 } from './portfolio-themes'
 
 const STORAGE_KEY = 'portfolio-gui-theme'
+/** One-time: old site default was the theme id `default` (GitHub dark); site default is now latte. */
+const LEGACY_GITHUB_DEFAULT_MIGRATION = 'portfolio-theme-latte-default-v1'
 
 export { DEFAULT_THEME, type ThemeName }
 
 export function readGuiTheme(): ThemeName {
   try {
     const value = localStorage.getItem(STORAGE_KEY) as ThemeName | null
-    if (value && value in THEMES) return value
+    if (value && value in THEMES) {
+      const migrated = localStorage.getItem(LEGACY_GITHUB_DEFAULT_MIGRATION)
+      if (value === 'default' && !migrated) {
+        localStorage.setItem(STORAGE_KEY, DEFAULT_THEME)
+        localStorage.setItem(LEGACY_GITHUB_DEFAULT_MIGRATION, '1')
+        return DEFAULT_THEME
+      }
+      return value
+    }
   } catch {
     /* ignore */
   }
