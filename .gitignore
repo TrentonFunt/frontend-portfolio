@@ -25,5 +25,10 @@ dist-ssr
 
 # Development docs (not for public repo)
 agents.md
+!AGENTS.md
 DEVELOPMENT.md
 QUICK_START.md
+
+# Agent workflow (local only)
+.claude/review-stamp.json
+.claude/settings.local.json

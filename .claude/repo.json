@@ -1,0 +1,17 @@
+{
+  "integrationBranch": "main",
+  "protectedBranch": "main",
+  "tier": "small-team",
+  "profile": "light",
+  "review": {
+    "tier1MaxLines": 50,
+    "tier1MaxFiles": 3,
+    "tier2MinLines": 200,
+    "floorPaths": [
+      ".claude/hooks/**",
+      ".github/workflows/**",
+      "scripts/**"
+    ]
+  },
+  "advisorySkipMaxAgeDays": 14
+}
