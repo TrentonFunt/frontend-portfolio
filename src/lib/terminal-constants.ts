@@ -69,7 +69,7 @@ export const BOOT_SEQUENCE = [
   { text: '  [OK] Animation subsystem online', delay: 1250 },
   { text: '', delay: 1350 },
   { text: 'Loading portfolio data...', delay: 1500 },
-  { text: '  → 4 projects indexed', delay: 1650 },
+  { text: '  → 6 projects indexed', delay: 1650 },
   { text: '  → Skills database connected', delay: 1800 },
   { text: '  → Contact endpoints ready', delay: 1950 },
   { text: '', delay: 2050 },
