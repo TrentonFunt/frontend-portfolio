@@ -34,7 +34,7 @@ export function Home() {
     <>
       <Seo
         title="Tiwalade Adegoke"
-        description="Fullstack Engineer open to remote opportunities. React, TypeScript, ASP.NET Core, and production systems across fintech, e-commerce, and learning products."
+        description="Fullstack engineer open to remote work. React, TypeScript, ASP.NET Core, and shipped web products from UI through APIs and data."
       />
 
       <section className="max-w-(--terminal-max) mx-auto px-4 py-16 md:py-24 relative">
