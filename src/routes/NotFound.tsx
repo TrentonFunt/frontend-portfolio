@@ -45,9 +45,12 @@ export function NotFound() {
             <h2 className="text-2xl md:text-3xl font-bold text-terminal-fg mb-4">
               bash: page: command not found
             </h2>
-            <p className="text-lg text-terminal-fg-muted max-w-md mx-auto mb-12">
-              The path you're looking for doesn't exist in this directory.
-              Let's get you back to a valid route.
+            <p className="text-lg text-terminal-fg-muted max-w-md mx-auto mb-4">
+              The path you&apos;re looking for doesn&apos;t exist in this directory.
+              Let&apos;s get you back to a valid route.
+            </p>
+            <p className="text-sm text-terminal-fg-muted/80 font-mono mb-12 max-w-md mx-auto">
+              fortune: &quot;Any fool can write code that a computer can understand. Good programmers write code that humans can understand.&quot;
             </p>
 
             <motion.div

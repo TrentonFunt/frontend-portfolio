@@ -14,8 +14,8 @@ export function Seo({
   url,
 }: SeoProps) {
   useEffect(() => {
-    // Update document title
-    document.title = `${title} | Fullstack Engineer`
+    const suffix = 'Fullstack Engineer'
+    document.title = title.includes(suffix) ? title : `${title} | ${suffix}`
 
     // Update meta tags
     const updateMetaTag = (name: string, content: string) => {

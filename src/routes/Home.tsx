@@ -1,9 +1,19 @@
-import { useNavigate } from 'react-router-dom'
-import { Badge } from '@/components/ui/badge'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import { Seo } from '@/components/seo/Seo'
-import { getAllProjects } from '@/lib/projects'
+import { ProjectCard } from '@/components/ProjectCard'
+import { ProjectSectionNav } from '@/components/ProjectSectionNav'
+import { CliHintBanner } from '@/components/CliHintBanner'
+import { SkillsAccordion } from '@/components/SkillsAccordion'
+import { ExperienceTimeline } from '@/components/ExperienceTimeline'
+import { CopyEmailButton } from '@/components/CopyEmailButton'
+import {
+  getAllProjects,
+  getProjectsByCategory,
+  PROJECT_CATEGORY_LABELS,
+  type ProjectCategory,
+} from '@/lib/projects'
+import type { SiteOutletContext } from '@/components/layout/SiteLayout'
 import { FadeInSection, StaggerContainer, StaggerItem } from '@/components/FadeInSection'
-import { TiltCard } from '@/components/TiltCard'
 import { MagneticButton } from '@/components/MagneticButton'
 import { Typewriter } from '@/components/Typewriter'
 import { CodeSnippet } from '@/components/CodeSnippet'
@@ -12,62 +22,57 @@ import { profile, summaryAbout, summaryShort } from '@/lib/portfolio-content'
 
 export function Home() {
   const navigate = useNavigate()
+  const { openCli } = useOutletContext<SiteOutletContext>()
   const projects = getAllProjects()
+  const projectSections: { category: ProjectCategory; dir: string; id: string }[] = [
+    { category: 'frontend', dir: 'frontend/', id: 'projects-frontend' },
+    { category: 'fullstack', dir: 'fullstack/', id: 'projects-fullstack' },
+    { category: 'backend', dir: 'backend/', id: 'projects-backend' },
+  ]
 
   return (
     <>
       <Seo
-        title="Tiwalade Adegoke | Fullstack Engineer"
+        title="Tiwalade Adegoke"
         description="Fullstack Engineer open to remote opportunities. React, TypeScript, ASP.NET Core, and production systems across fintech, e-commerce, and learning products."
       />
 
       <section className="max-w-(--terminal-max) mx-auto px-4 py-16 md:py-24 relative">
-        <div 
-          className="absolute -top-10 md:-top-20 left-1/2 -translate-x-1/2 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-terminal-prompt/20 rounded-full blur-3xl pointer-events-none" 
-          aria-hidden="true" 
-        />
-        <div 
-          className="absolute -top-5 md:-top-10 left-1/4 md:left-1/3 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-(--syntax-function)/15 rounded-full blur-3xl pointer-events-none" 
-          aria-hidden="true" 
-        />
-        
         <FadeInSection>
-          <div className="terminal-window relative overflow-hidden border-terminal-prompt/30 shadow-[0_0_60px_-15px_var(--terminal-prompt)]">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-terminal-prompt to-transparent" aria-hidden="true" />
-            
-            <div className="absolute top-4 right-4 hidden md:block opacity-50 pointer-events-none" aria-hidden="true">
+          <CliHintBanner onOpenCli={openCli} />
+
+          <div className="terminal-window relative overflow-hidden border-(--border-terminal)">
+            <div className="absolute top-0 left-0 right-0 h-px bg-terminal-prompt/40" aria-hidden="true" />
+
+            <div className="absolute top-4 right-4 hidden lg:block opacity-40 pointer-events-none" aria-hidden="true">
               <CodeSnippet delay={2000} />
             </div>
-            
+
             <div className="terminal-body relative z-10">
-              <div className="mb-6">
+              <div className="mb-6 font-mono text-sm">
                 <span className="text-terminal-prompt">visitor@portfolio</span>
                 <span className="text-terminal-fg-muted">:</span>
                 <span className="text-(--syntax-function)">~</span>
                 <span className="text-terminal-fg-muted">$</span>
                 <span className="ml-2">whoami</span>
               </div>
-              
-              <div className="mb-8 pl-0">
-                <h1 className="text-terminal-fg mb-4 text-2xl sm:text-3xl md:text-4xl">
+
+              <div className="mb-8">
+                <h1 className="text-terminal-fg mb-3 text-2xl sm:text-3xl md:text-4xl font-mono tracking-tight">
                   <Typewriter text="Tiwalade Adegoke" speed={80} delay={300} showCursorAfterComplete />
                 </h1>
-                <p className="text-base sm:text-lg mb-2">
-                  <span className="bg-linear-to-r from-(--syntax-function) via-terminal-prompt to-(--syntax-string) bg-clip-text text-transparent font-semibold">
-                    Fullstack Engineer
-                  </span>
+                <p className="text-base sm:text-lg mb-3 text-(--syntax-function) font-semibold font-mono">
+                  Fullstack Engineer
                 </p>
-                <p className="text-terminal-fg-muted max-w-2xl leading-relaxed text-sm sm:text-base md:text-lg">
-                  {summaryShort}{' '}
-                  Type <span className="text-(--syntax-string)">`help`</span> in CLI mode
-                  (<span className="text-(--syntax-string)">experience</span> for work history), or scroll for the GUI.
+                <p className="text-terminal-fg-muted max-w-2xl leading-relaxed text-sm sm:text-base">
+                  {summaryShort}
                 </p>
-                <p className="text-terminal-prompt text-sm mt-3 font-medium">
+                <p className="text-terminal-prompt text-sm mt-3 font-medium font-mono">
                   {profile.availability}
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm">
+              <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-mono">
                 <MagneticButton
                   as="a"
                   href="#projects"
@@ -77,10 +82,10 @@ export function Home() {
                 </MagneticButton>
                 <MagneticButton
                   as="a"
-                  href="#about"
+                  href="#experience"
                   className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors"
                 >
-                  <span>→</span> about me
+                  <span>→</span> experience
                 </MagneticButton>
                 <MagneticButton
                   as="a"
@@ -97,68 +102,65 @@ export function Home() {
 
       <section id="projects" className="py-16 md:py-24 border-y border-(--border-terminal)">
         <div className="max-w-(--terminal-max) mx-auto px-4">
-          <FadeInSection className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
+          <FadeInSection className="mb-6">
+            <div className="flex items-center gap-2 mb-2 font-mono text-sm">
               <span className="text-terminal-prompt">$</span>
               <span>ls -la ./projects</span>
             </div>
-            <p className="text-terminal-fg-muted">
-              total {projects.length} projects
-            </p>
+            <p className="text-terminal-fg-muted text-sm">total {projects.length} entries</p>
           </FadeInSection>
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project) => (
-              <StaggerItem key={project.id}>
-                <TiltCard
-                  onClick={() => navigate(`/projects/${project.slug}`)}
-                  className="group cursor-pointer p-6 rounded-lg border border-(--border-terminal) bg-terminal-bg-alt hover:border-terminal-prompt transition-colors"
+          <ProjectSectionNav />
+
+          <div className="space-y-16">
+            {projectSections.map(({ category, dir, id }, sectionIndex) => {
+              const sectionProjects = getProjectsByCategory(category)
+              if (sectionProjects.length === 0) return null
+
+              return (
+                <div
+                  key={category}
+                  id={id}
+                  className="scroll-mt-[var(--site-scroll-offset)] section-anchor"
                 >
-                  <div className="relative w-full h-40 mb-4 overflow-hidden rounded bg-terminal-bg">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                      loading="lazy"
-                    />
-                  </div>
+                  <FadeInSection delay={sectionIndex * 0.05} className="mb-6">
+                    <div className="flex items-center gap-2 mb-1 font-mono text-sm">
+                      <span className="text-terminal-prompt">$</span>
+                      <span>{`ls ./projects/${dir}`}</span>
+                    </div>
+                    <p className="text-terminal-fg-muted text-sm">
+                      {sectionProjects.length} {PROJECT_CATEGORY_LABELS[category].toLowerCase()}{' '}
+                      {sectionProjects.length === 1 ? 'project' : 'projects'}
+                    </p>
+                  </FadeInSection>
 
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-terminal-fg group-hover:text-terminal-prompt transition-colors">
-                      {project.title}
-                    </h3>
-                    <span className="text-sm text-terminal-fg-muted whitespace-nowrap">
-                      {project.year}
-                    </span>
-                  </div>
-
-                  <p className="text-terminal-fg-muted text-sm mb-4 line-clamp-2">
-                    {project.shortDescription}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="border-(--border-terminal) bg-transparent text-terminal-fg-muted rounded-sm px-2 py-0.5 text-xs"
-                      >
-                        {tech}
-                      </Badge>
+                  <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {sectionProjects.map((project) => (
+                      <StaggerItem key={project.id}>
+                        <ProjectCard
+                          project={project}
+                          onClick={() => navigate(`/projects/${project.slug}`)}
+                        />
+                      </StaggerItem>
                     ))}
-                    {project.technologies.length > 3 && (
-                      <Badge
-                        variant="outline"
-                        className="border-(--border-terminal) bg-transparent text-terminal-fg-muted rounded-sm px-2 py-0.5 text-xs"
-                      >
-                        +{project.technologies.length - 3}
-                      </Badge>
-                    )}
-                  </div>
-                </TiltCard>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                  </StaggerContainer>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" className="py-16 md:py-24 border-b border-(--border-terminal) bg-terminal-bg-alt">
+        <div className="max-w-(--terminal-max) mx-auto px-4">
+          <FadeInSection>
+            <div className="mb-8 font-mono text-sm">
+              <span className="text-terminal-prompt">$</span>
+              <span className="ml-2">cat experience.md</span>
+            </div>
+            <h2 className="text-terminal-fg text-xl sm:text-2xl mb-8 font-mono"># Experience</h2>
+            <ExperienceTimeline />
+          </FadeInSection>
         </div>
       </section>
 
@@ -167,105 +169,18 @@ export function Home() {
           <FadeInSection>
             <div className="terminal-window">
               <div className="terminal-body">
-                <div className="mb-6 text-sm sm:text-base">
+                <div className="mb-6 text-sm sm:text-base font-mono">
                   <span className="text-terminal-prompt">$</span>
                   <span className="ml-2">cat about.md</span>
                 </div>
-                
+
                 <div className="space-y-4 sm:space-y-6 max-w-(--content-max)">
-                  <h2 className="text-terminal-fg text-xl sm:text-2xl md:text-3xl">
-                    # About Me
-                  </h2>
-                  <p className="text-terminal-fg-muted leading-relaxed text-sm sm:text-base">
-                    {summaryAbout}
-                  </p>
-                  
+                  <h2 className="text-terminal-fg text-xl sm:text-2xl md:text-3xl font-mono"># About Me</h2>
+                  <p className="text-terminal-fg-muted leading-relaxed text-sm sm:text-base">{summaryAbout}</p>
+
                   <div className="pt-4 border-t border-(--border-terminal)">
-                    <h3 className="text-terminal-fg mb-6">## Skills</h3>
-                    
-                    <div className="mb-6">
-                      <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Frontend</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Ant Design', 'GSAP', 'Motion'].map((skill) => (
-                          <span 
-                            key={skill}
-                            className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Backend</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {['C# ASP.NET Core', 'EF Core', 'Node.js', 'PostgreSQL', 'Redis', 'REST APIs', 'JWT', 'RBAC', 'MFA'].map((skill) => (
-                          <span 
-                            key={skill}
-                            className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">State & Data</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {['Redux Toolkit', 'Zustand', 'TanStack Query', 'Axios', 'REST APIs'].map((skill) => (
-                          <span 
-                            key={skill}
-                            className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Tools</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {['Git', 'GitHub Actions', 'Docker', 'Sentry', 'Firebase', 'Figma', 'Vercel', 'Vite', 'Cursor'].map((skill) => (
-                          <span 
-                            key={skill}
-                            className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Testing</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {['Jest', 'Vitest', 'React Testing Library', 'Cypress', 'NUnit'].map((skill) => (
-                          <span 
-                            key={skill}
-                            className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Core Concepts</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {['Component Architecture', 'SOLID Principles', 'Responsive Design', 'Accessibility', 'Performance Optimization', 'Role-Based Access Control'].map((skill) => (
-                          <span 
-                            key={skill}
-                            className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                    <h3 className="text-terminal-fg mb-4 font-mono">## Skills</h3>
+                    <SkillsAccordion />
                   </div>
                 </div>
               </div>
@@ -277,45 +192,46 @@ export function Home() {
       <section id="contact" className="py-16 md:py-24 border-t border-(--border-terminal)">
         <div className="max-w-(--terminal-max) mx-auto px-4">
           <FadeInSection className="text-center max-w-(--content-max) mx-auto">
-            <div className="mb-6 text-sm sm:text-base">
+            <div className="mb-6 text-sm sm:text-base font-mono">
               <span className="text-terminal-prompt">$</span>
               <span className="ml-2">./contact --send-message</span>
             </div>
-            
-            <h2 className="text-terminal-fg mb-4 text-xl sm:text-2xl md:text-3xl">
-              Let's Build Something
+
+            <h2 className="text-terminal-fg mb-4 text-xl sm:text-2xl md:text-3xl font-mono">
+              Let&apos;s build something
             </h2>
             <p className="text-terminal-fg-muted mb-8 leading-relaxed text-sm sm:text-base">
               {profile.availability}. I&apos;d love to hear about roles, collaborations, or interesting builds.
             </p>
-            
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
               <a
-                href="mailto:tiwatide23@gmail.com"
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-terminal-prompt text-terminal-bg font-semibold rounded hover:bg-terminal-fg transition-colors text-sm sm:text-base"
+                href={`mailto:${profile.email}`}
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 bg-terminal-prompt text-terminal-bg font-semibold rounded hover:bg-terminal-fg transition-colors text-sm sm:text-base font-mono break-all sm:break-normal"
               >
-                tiwatide23@gmail.com
+                {profile.email}
               </a>
+              <CopyEmailButton />
               <a
                 href={resumePdf}
                 download="Tiwalade-Adegoke-Resume.pdf"
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
               >
-                ↓ Resume
+                ↓ resume
               </a>
               <a
-                href="https://github.com/TrentonFunt"
+                href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
               >
                 GitHub
               </a>
               <a
-                href="https://www.linkedin.com/in/tiwalade-adegoke"
+                href={profile.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
               >
                 LinkedIn
               </a>

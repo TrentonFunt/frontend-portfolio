@@ -25,6 +25,7 @@ CLI-themed React portfolio (Vite 7, TypeScript strict, Tailwind v4, Framer Motio
 | `npm run lint` | ESLint |
 | `npm run check` | build + lint (definition of done minimum) |
 | `npm run preview` | Preview production build |
+| `npm run dev` + Playwright MCP | After UI changes: start dev server (5173), use **playwright** MCP (`.cursor/mcp.json`) or **cursor-ide-browser** to verify CLI + GUI paths |
 
 One-time hooks install: `git config core.hooksPath .githooks`
 

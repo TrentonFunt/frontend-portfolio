@@ -3,7 +3,13 @@ import {
   profile,
   summaryAbout,
 } from './portfolio-content'
-import { getAllProjects, type Project } from './projects'
+import {
+  getAllProjects,
+  getProjectsByCategory,
+  PROJECT_CATEGORY_LABELS,
+  type Project,
+  type ProjectCategory,
+} from './projects'
 
 export interface CommandOutput {
   type: 'text' | 'html' | 'error' | 'clear' | 'navigate' | 'download' | 'confetti' | 'theme' | 'animation'
@@ -21,28 +27,96 @@ export interface Command {
 }
 
 function formatProjectList(projects: Project[]): string {
-  const lines = projects.map((p) => {
-    const name = p.slug.padEnd(20)
-    const year = String(p.year).padEnd(6)
-    return `  ${name} ${year} ${p.shortDescription}`
+  const categories: ProjectCategory[] = ['frontend', 'fullstack', 'backend']
+  const sections = categories.flatMap((category) => {
+    const grouped = projects.filter((p) => p.category === category)
+    if (grouped.length === 0) return []
+
+    const lines = grouped.map((p) => {
+      const name = p.slug.padEnd(28)
+      const year = String(p.year).padEnd(6)
+      return `  ${name} ${year} ${p.shortDescription}`
+    })
+
+    return [
+      `[${PROJECT_CATEGORY_LABELS[category]}]`,
+      '  NAME                         YEAR   DESCRIPTION',
+      ...lines,
+      '',
+    ]
   })
-  return ['', 'NAME                 YEAR   DESCRIPTION', ...lines, ''].join('\n')
+
+  return ['', ...sections].join('\n')
 }
 
 function formatProjectDetail(project: Project): string {
-  return [
+  const lines = [
     '',
     `# ${project.title}`,
+    `Category: ${PROJECT_CATEGORY_LABELS[project.category]}`,
     '',
-    project.description,
+    project.shortDescription,
     '',
+  ]
+
+  if (project.problem) {
+    lines.push('## The problem', '', project.problem, '')
+  }
+
+  if (project.built?.length) {
+    lines.push('## What I built', '', ...project.built.map((item) => `- ${item}`), '')
+  }
+
+  if (project.concepts?.length) {
+    lines.push(`Concepts: ${project.concepts.join(', ')}`, '')
+  }
+
+  if (project.impact?.length) {
+    lines.push('## Impact', '', ...project.impact.map((item) => `- ${item}`), '')
+  }
+
+  if (project.category !== 'backend') {
+    lines.push(project.description, '')
+  }
+
+  lines.push(
     `Year: ${project.year}`,
     `Tech: ${project.technologies.join(', ')}`,
     project.url ? `URL:  ${project.url}` : '',
     '',
+  )
+
+  return lines.filter((line) => line !== undefined).join('\n')
+}
+
+function formatProjectsTree(): string {
+  const categories: ProjectCategory[] = ['frontend', 'fullstack', 'backend']
+  const lines: string[] = [
+    '',
+    '~/portfolio',
+    '├── about.md',
+    '├── experience.md',
+    '├── contact.md',
+    '├── resume.pdf',
+    '└── projects/',
   ]
-    .filter(Boolean)
-    .join('\n')
+
+  categories.forEach((category, catIndex) => {
+    const items = getProjectsByCategory(category)
+    const catLast = catIndex === categories.length - 1
+    const catBranch = catLast ? '└── ' : '├── '
+    const innerPrefix = catLast ? '    ' : '│   '
+    lines.push(`    ${catBranch}${category}/`)
+
+    items.forEach((p, index) => {
+      const itemLast = index === items.length - 1
+      const itemBranch = itemLast ? '└── ' : '├── '
+      lines.push(`    ${innerPrefix}${itemBranch}${p.slug}/`)
+    })
+  })
+
+  lines.push('')
+  return lines.join('\n')
 }
 
 export const commands: Command[] = [
@@ -518,22 +592,7 @@ export const commands: Command[] = [
     description: 'Display directory tree',
     execute: () => ({
       type: 'text',
-      content: [
-        '',
-        '~/portfolio',
-        '├── about.md',
-        '├── experience.md',
-        '├── contact.md',
-        '├── resume.pdf',
-        '└── projects/',
-        '    ├── eanvest/',
-        '    ├── gooeyspot/',
-        '    ├── gbese/',
-        '    ├── multilearn/',
-        '    ├── stack-hero/',
-        '    └── role-rocket/',
-        '',
-      ].join('\n'),
+      content: formatProjectsTree(),
     }),
   },
   {

@@ -1,4 +1,4 @@
-import { useRef, type ReactNode, type MouseEvent } from 'react'
+import { useRef, useState, useEffect, type ReactNode, type MouseEvent } from 'react'
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion'
 
 interface TiltCardProps {
@@ -10,12 +10,21 @@ interface TiltCardProps {
 export function TiltCard({ children, className = '', onClick }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useReducedMotion()
+  const [tiltEnabled, setTiltEnabled] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)')
+    const update = () => setTiltEnabled(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
 
   const rotateX = useSpring(useMotionValue(0), { stiffness: 150, damping: 20 })
   const rotateY = useSpring(useMotionValue(0), { stiffness: 150, damping: 20 })
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!ref.current || prefersReducedMotion) return
+    if (!ref.current || prefersReducedMotion || !tiltEnabled) return
 
     const rect = ref.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
@@ -38,7 +47,7 @@ export function TiltCard({ children, className = '', onClick }: TiltCardProps) {
   }
 
   // Render non-animated version for reduced motion
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || !tiltEnabled) {
     return (
       <div ref={ref} className={className} onClick={onClick}>
         {children}
