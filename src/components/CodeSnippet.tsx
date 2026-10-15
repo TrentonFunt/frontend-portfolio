@@ -4,7 +4,8 @@ import { useReducedMotion } from 'framer-motion'
 const CODE_LINES = [
   'const developer = {',
   '  name: "Tiwalade",',
-  '  role: "Fullstack Developer",'  ,
+  '  role: "Fullstack Engineer",',
+  '  openToWork: true,',
   '  skills: ["React", "TypeScript"],',
   '  passion: "Building great UX",',
   '};',

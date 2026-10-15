@@ -13,12 +13,34 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: '6',
+    slug: 'eanvest',
+    title: 'Eanvest — Investment Platform Website',
+    shortDescription: 'Public marketing site for stocks, funds, bonds, and treasury products',
+    description:
+      'Built the public-facing website for an investment platform, presenting stocks, mutual funds, bonds, and treasury bills. Integrated live Nigerian and US stock prices and charts through Next.js API routes. Built scroll-driven animations with GSAP and Motion, with reduced-motion support for accessibility. Created legal and FAQ pages with MDX, including search and a sticky table of contents. Improved accessibility and SEO with WCAG AA contrast, structured data, a sitemap, and security headers.',
+    year: 2026,
+    technologies: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'GSAP',
+      'Motion',
+      'TanStack Query',
+      'MDX',
+    ],
+    image: '/images/projects/eanvest.png',
+    url: 'https://eanvest.com',
+    role: 'Fullstack Engineer',
+  },
+  {
     id: '5',
     slug: 'gooeyspot',
     title: 'TheGooeySpot — Bakery Ordering Platform',
     shortDescription: 'Fullstack bakery platform with order management and REST APIs',
     description:
-      'Built a fullstack web platform for a real bakery business to showcase products, manage orders, and handle customer interactions. Developed RESTful APIs using ASP.NET Core for order processing and user management. Implemented authentication and role-based access control using JWT and RBAC. Designed and managed a PostgreSQL database for products, orders, and customer records. Deployed and managed the application on an InterServer VPS using Docker, handling API hosting, server configuration, and production deployments. Built responsive frontend interfaces with React and Tailwind CSS, optimized for mobile users to improve accessibility and conversion for online orders. Implemented payment-ready flows, order tracking systems, and a reward/referral system to support real-world transactions.',
+      'Fullstack web application for managing products, orders, and customer interactions. RESTful APIs on ASP.NET Core for order processing and user management. Authentication and role-based access control (JWT, RBAC). PostgreSQL for products, orders, and users. Deployed on a VPS with Docker. Responsive React and Tailwind CSS interfaces, optimized for mobile users.',
     year: 2025,
     technologies: ['ASP.NET Core', 'C#', 'React.js', 'PostgreSQL', 'Docker', 'Tailwind CSS', 'JWT'],
     image: '/images/projects/gooeyspot.png',
@@ -31,7 +53,7 @@ export const projects: Project[] = [
     title: 'Gbese - Peer-to-Peer Credit Transfer',
     shortDescription: 'Fintech platform for real-time debt transfer workflows',
     description:
-      'Engineered core debt-transfer workflows ensuring real-time synchronization of wallet balances, debt records, and credit scores across users. Prevented financial inconsistencies by validating transaction parameters before state mutations and API calls. Collaborated in a 3-person frontend team using feature-based branching, pull-request reviews, and sprint stand-ups. Shipped a production-ready fintech interface used in live capstone demos.',
+      'User-facing financial interfaces for a peer-to-peer credit transfer platform — manage debts and transfer balances between wallets. Redux Toolkit for consistent transaction flows across multi-step UI. REST APIs with validation, loading states, and error handling for reliable financial behavior. Responsive layouts and clear feedback patterns where accuracy and usability matter. Collaborated with backend developers to align frontend flows with API logic.',
     year: 2025,
     technologies: ['React', 'Redux', 'Tailwind CSS', 'shadcn/ui', 'TanStack Query'],
     image: '/images/projects/gbese.png',
@@ -44,7 +66,7 @@ export const projects: Project[] = [
     title: 'MultiLearn - E-Learning Platform',
     shortDescription: 'Full-featured learning platform with role-based dashboards',
     description:
-      'Designed and built a full-featured learning platform with authentication, role-based dashboards, and instructor approval workflows. Implemented full CRUD functionality for course creation and management. Improved page responsiveness and data fetching efficiency using TanStack Query caching strategies. Created a reusable component system with consistent light/dark theming across the application.',
+      'Full learning platform with authentication, user dashboards, and course management interfaces. Modular, reusable React components for consistent UI across pages. API-driven data fetching and state management for smooth navigation. Responsive design and performance optimization for desktop and mobile.',
     year: 2025,
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Firebase', 'TanStack Query'],
     image: '/images/projects/multilearn.png',

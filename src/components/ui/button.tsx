@@ -61,4 +61,5 @@ function Button({
   )
 }
 
+/* eslint-disable react-refresh/only-export-components -- shadcn variant helper export */
 export { Button, buttonVariants }

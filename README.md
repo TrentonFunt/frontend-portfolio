@@ -1,6 +1,6 @@
-# Frontend Developer Portfolio
+# Fullstack Engineer Portfolio
 
-> A CLI-themed developer portfolio that presents as a terminal interface. Type commands to explore, or switch to GUI mode for a traditional browsing experience.
+> Tiwalade Adegoke — CLI-themed portfolio (terminal + GUI). Fullstack Engineer: React, TypeScript, ASP.NET Core, and production web systems. Type `help` in CLI mode or scroll in GUI mode.
 
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white)

@@ -9,12 +9,14 @@ lerna-debug.log*
 
 node_modules
 dist
+tmp/
 dist-ssr
 *.local
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 .DS_Store
 *.suo
@@ -25,5 +27,10 @@ dist-ssr
 
 # Development docs (not for public repo)
 agents.md
+!AGENTS.md
 DEVELOPMENT.md
 QUICK_START.md
+
+# Agent workflow (local only)
+.claude/review-stamp.json
+.claude/settings.local.json

@@ -45,4 +45,5 @@ function Badge({
   )
 }
 
+/* eslint-disable react-refresh/only-export-components -- shadcn variant helper export */
 export { Badge, badgeVariants }

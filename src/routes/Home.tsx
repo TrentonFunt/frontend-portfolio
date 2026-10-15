@@ -8,6 +8,7 @@ import { MagneticButton } from '@/components/MagneticButton'
 import { Typewriter } from '@/components/Typewriter'
 import { CodeSnippet } from '@/components/CodeSnippet'
 import resumePdf from '@/assets/TIWALADE-ADEGOKE-Resume.pdf'
+import { profile, summaryAbout, summaryShort } from '@/lib/portfolio-content'
 
 export function Home() {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ export function Home() {
     <>
       <Seo
         title="Tiwalade Adegoke | Fullstack Engineer"
-        description="Fullstack Engineer building scalable web applications across frontend and backend systems. Strong in React, TypeScript, ASP.NET, and modern UI development."
+        description="Fullstack Engineer open to remote opportunities. React, TypeScript, ASP.NET Core, and production systems across fintech, e-commerce, and learning products."
       />
 
       <section className="max-w-(--terminal-max) mx-auto px-4 py-16 md:py-24 relative">
@@ -57,11 +58,12 @@ export function Home() {
                   </span>
                 </p>
                 <p className="text-terminal-fg-muted max-w-2xl leading-relaxed text-sm sm:text-base md:text-lg">
-                  I build scalable web applications across frontend and backend systems. 
-                  Strong in React, TypeScript, ASP.NET, and modern UI development — with hands-on 
-                  experience designing RESTful APIs, managing relational databases, and implementing 
-                  secure authentication. Type <span className="text-(--syntax-string)">`help`</span> to explore, 
-                  or scroll to browse the GUI way.
+                  {summaryShort}{' '}
+                  Type <span className="text-(--syntax-string)">`help`</span> in CLI mode
+                  (<span className="text-(--syntax-string)">experience</span> for work history), or scroll for the GUI.
+                </p>
+                <p className="text-terminal-prompt text-sm mt-3 font-medium">
+                  {profile.availability}
                 </p>
               </div>
 
@@ -175,14 +177,7 @@ export function Home() {
                     # About Me
                   </h2>
                   <p className="text-terminal-fg-muted leading-relaxed text-sm sm:text-base">
-                    Fullstack Engineer with 2+ years experience building scalable web applications across frontend and backend systems.
-                    I've shipped production code across different domains — from a real bakery ordering platform with its own backend infrastructure,
-                    to fintech platforms handling live transactions, e-learning systems, and physics-based games.
-                    Strong in React, TypeScript, ASP.NET, and modern UI development.
-                  </p>
-                  <p className="text-terminal-fg-muted leading-relaxed text-sm sm:text-base">
-                    I thrive in collaborative environments, enjoy owning features end-to-end — from API design to polished UI — 
-                    and care deeply about code quality, security, and user experience. Based in Nigeria, open to remote opportunities worldwide.
+                    {summaryAbout}
                   </p>
                   
                   <div className="pt-4 border-t border-(--border-terminal)">
@@ -191,7 +186,7 @@ export function Home() {
                     <div className="mb-6">
                       <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Frontend</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['React.js', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'].map((skill) => (
+                        {['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Ant Design', 'GSAP', 'Motion'].map((skill) => (
                           <span 
                             key={skill}
                             className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
@@ -205,7 +200,7 @@ export function Home() {
                     <div className="mb-6">
                       <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Backend</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['C# ASP.NET Core', 'Node.js', 'PHP (Laravel)', 'SQL', 'PostgreSQL', 'RESTful API Design', 'JWT', 'RBAC'].map((skill) => (
+                        {['C# ASP.NET Core', 'EF Core', 'Node.js', 'PostgreSQL', 'Redis', 'REST APIs', 'JWT', 'RBAC', 'MFA'].map((skill) => (
                           <span 
                             key={skill}
                             className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
@@ -233,7 +228,7 @@ export function Home() {
                     <div className="mb-6">
                       <h4 className="text-(--syntax-function) text-sm mb-3 font-semibold">Tools</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['Git', 'GitHub', 'Firebase', 'Figma', 'Chrome DevTools', 'Vercel', 'Docker', 'Vite', 'Cursor', 'GitHub Copilot'].map((skill) => (
+                        {['Git', 'GitHub Actions', 'Docker', 'Sentry', 'Firebase', 'Figma', 'Vercel', 'Vite', 'Cursor'].map((skill) => (
                           <span 
                             key={skill}
                             className="px-3 py-1 text-sm border border-(--border-terminal) rounded text-(--syntax-variable) hover:border-terminal-prompt hover:text-terminal-prompt transition-colors"
@@ -291,8 +286,7 @@ export function Home() {
               Let's Build Something
             </h2>
             <p className="text-terminal-fg-muted mb-8 leading-relaxed text-sm sm:text-base">
-              I'm always interested in hearing about new projects, opportunities, 
-              or just chatting about the web. Drop me a line.
+              {profile.availability}. I&apos;d love to hear about roles, collaborations, or interesting builds.
             </p>
             
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">

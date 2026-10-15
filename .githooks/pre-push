@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT"
+
+echo "pre-push: fast checks (typecheck, lint, guard tests)…"
+npm run build
+npm run lint
+node .claude/hooks/guard.test.mjs
+node .claude/hooks/stage.test.mjs
+node .claude/hooks/pre-push-review.mjs

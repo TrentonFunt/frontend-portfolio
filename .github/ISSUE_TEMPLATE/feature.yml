@@ -1,0 +1,29 @@
+name: Feature or fix
+description: Track work with a Part G risk label
+title: "[normal] "
+labels: ["normal"]
+body:
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk label (Part G)
+      options:
+        - normal
+        - auth
+        - money
+        - contract
+        - config
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem (two sentences)
+      description: Who is affected and what it costs today
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Links, screenshots, acceptance hints

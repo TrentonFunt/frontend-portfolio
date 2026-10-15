@@ -1,5 +1,6 @@
 {
   "name": "frontend-portfolio",
+  "description": "Fullstack Engineer portfolio — Tiwalade Adegoke (CLI + GUI)",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,6 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "check": "npm run build && npm run lint",
+    "test:guards": "node .claude/hooks/guard.test.mjs && node .claude/hooks/stage.test.mjs && bash .claude/hooks/check-standard-drift.test.sh",
     "preview": "vite preview"
   },
   "dependencies": {
