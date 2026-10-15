@@ -45,14 +45,12 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
         {accent.label}
       </p>
 
-      <div className="flex items-start justify-between gap-2 mb-1">
-        <h3 className="text-terminal-fg group-hover:text-terminal-prompt transition-colors">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1 min-w-0">
+        <h3 className="text-terminal-fg group-hover:text-terminal-prompt transition-colors text-base sm:text-lg break-words">
           {project.title}
         </h3>
         {project.category !== 'backend' && (
-          <span className="text-sm text-terminal-fg-muted whitespace-nowrap font-mono">
-            {project.year}
-          </span>
+          <span className="text-sm text-terminal-fg-muted font-mono shrink-0">{project.year}</span>
         )}
       </div>
 

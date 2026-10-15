@@ -118,7 +118,11 @@ export function Home() {
               if (sectionProjects.length === 0) return null
 
               return (
-                <div key={category} id={id} className="scroll-mt-28 section-anchor">
+                <div
+                  key={category}
+                  id={id}
+                  className="scroll-mt-[var(--site-scroll-offset)] section-anchor"
+                >
                   <FadeInSection delay={sectionIndex * 0.05} className="mb-6">
                     <div className="flex items-center gap-2 mb-1 font-mono text-sm">
                       <span className="text-terminal-prompt">$</span>
@@ -200,10 +204,10 @@ export function Home() {
               {profile.availability}. I&apos;d love to hear about roles, collaborations, or interesting builds.
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-terminal-prompt text-terminal-bg font-semibold rounded hover:bg-terminal-fg transition-colors text-sm sm:text-base font-mono"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 bg-terminal-prompt text-terminal-bg font-semibold rounded hover:bg-terminal-fg transition-colors text-sm sm:text-base font-mono break-all sm:break-normal"
               >
                 {profile.email}
               </a>
@@ -211,7 +215,7 @@ export function Home() {
               <a
                 href={resumePdf}
                 download="Tiwalade-Adegoke-Resume.pdf"
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
               >
                 ↓ resume
               </a>
@@ -219,7 +223,7 @@ export function Home() {
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
               >
                 GitHub
               </a>
@@ -227,7 +231,7 @@ export function Home() {
                 href={profile.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
               >
                 LinkedIn
               </a>

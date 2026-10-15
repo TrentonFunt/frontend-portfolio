@@ -34,7 +34,7 @@ export function TechStackBadges({
             e.stopPropagation()
             setExpanded((v) => !v)
           }}
-          className="text-xs px-2 py-0.5 rounded-sm border border-dashed border-(--border-terminal) text-terminal-fg-muted hover:text-terminal-prompt hover:border-terminal-prompt transition-colors"
+          className="text-xs min-h-11 sm:min-h-0 px-3 sm:px-2 py-2 sm:py-0.5 rounded-sm border border-dashed border-(--border-terminal) text-terminal-fg-muted hover:text-terminal-prompt hover:border-terminal-prompt transition-colors"
         >
           {expanded ? '− less' : `+${technologies.length - previewCount} more`}
         </button>

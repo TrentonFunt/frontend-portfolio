@@ -18,7 +18,7 @@ export function CopyEmailButton() {
     <button
       type="button"
       onClick={copy}
-      className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
+      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-4 sm:px-6 py-3 min-h-11 border border-(--border-terminal) text-terminal-fg-muted rounded hover:border-terminal-fg hover:text-terminal-fg transition-colors text-sm sm:text-base font-mono"
     >
       {copied ? 'copied ✓' : 'copy email'}
     </button>

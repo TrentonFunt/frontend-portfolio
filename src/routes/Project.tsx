@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
@@ -18,6 +19,10 @@ export function Project() {
   const prefersReducedMotion = useReducedMotion()
   const project = slug ? getProjectBySlug(slug) : undefined
   const allProjects = getAllProjects()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [slug])
 
   if (!project) {
     return <NotFound />
@@ -64,13 +69,15 @@ export function Project() {
               <p className="text-xs sm:text-sm font-semibold text-(--syntax-function) uppercase tracking-wider mb-3">
                 {PROJECT_CATEGORY_LABELS[project.category]}
               </p>
-              <h1 className="mb-2 text-terminal-fg text-2xl sm:text-3xl md:text-4xl">{project.title}</h1>
+              <h1 className="mb-2 text-terminal-fg text-2xl sm:text-3xl md:text-4xl break-words text-balance">
+                {project.title}
+              </h1>
               <p className="text-base sm:text-lg text-terminal-fg-muted max-w-2xl mb-6 sm:mb-8 leading-relaxed">
                 {heroBlurb}
               </p>
 
               {/* Project Meta */}
-              <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-(--border-terminal)">
+              <div className="grid grid-cols-2 sm:flex sm:flex-row gap-4 sm:gap-8 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-(--border-terminal)">
                 {project.category !== 'backend' && (
                   <div>
                     <p className="text-xs sm:text-sm font-semibold text-terminal-fg-muted uppercase tracking-wider mb-1 sm:mb-2">
@@ -83,7 +90,9 @@ export function Project() {
                   <p className="text-xs sm:text-sm font-semibold text-terminal-fg-muted uppercase tracking-wider mb-1 sm:mb-2">
                     Role
                   </p>
-                  <p className="text-xl sm:text-2xl font-bold text-terminal-fg">{project.role || 'Fullstack Engineer'}</p>
+                  <p className="text-lg sm:text-2xl font-bold text-terminal-fg break-words">
+                    {project.role || 'Fullstack Engineer'}
+                  </p>
                 </div>
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-terminal-fg-muted uppercase tracking-wider mb-1 sm:mb-2">

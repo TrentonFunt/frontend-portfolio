@@ -11,7 +11,7 @@ export function ExperienceTimeline() {
           <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-terminal-bg border-2 border-terminal-prompt" />
           <header className="mb-2">
             <h3 className="text-terminal-fg font-semibold text-base sm:text-lg">{job.title}</h3>
-            <p className="text-terminal-prompt text-sm font-mono">
+            <p className="text-terminal-prompt text-sm font-mono break-words">
               {job.org} · {job.period}
             </p>
             <p className="text-terminal-fg-muted text-xs mt-0.5">{job.location}</p>

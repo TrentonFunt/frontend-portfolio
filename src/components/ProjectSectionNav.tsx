@@ -42,15 +42,16 @@ export function ProjectSectionNav() {
   return (
     <nav
       aria-label="Project categories"
-      className="sticky top-11 z-180 -mx-4 px-4 py-3 mb-8 bg-terminal-bg/90 backdrop-blur-sm border-y border-(--border-terminal)"
+      className="sticky z-180 -mx-4 px-4 py-2 sm:py-3 mb-6 sm:mb-8 bg-terminal-bg/95 backdrop-blur-sm border-y border-(--border-terminal)"
+      style={{ top: 'calc(var(--site-header-height) + env(safe-area-inset-top, 0px))' }}
     >
-      <div className="flex flex-wrap gap-2 text-sm font-mono">
+      <div className="flex gap-2 text-sm font-mono overflow-x-auto pb-1 -mx-1 px-1 snap-x snap-mandatory [scrollbar-width:thin]">
         {SECTIONS.map(({ category, id }) => (
           <button
             key={category}
             type="button"
             onClick={() => jump(id)}
-            className={`px-3 py-1.5 rounded border transition-colors ${
+            className={`shrink-0 snap-start min-h-11 px-4 py-2 rounded border transition-colors ${
               active === category
                 ? 'border-terminal-prompt text-terminal-prompt bg-terminal-prompt/10'
                 : 'border-(--border-terminal) text-terminal-fg-muted hover:border-terminal-fg hover:text-terminal-fg'

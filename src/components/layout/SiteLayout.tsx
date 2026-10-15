@@ -79,12 +79,12 @@ export function SiteLayout() {
               <span className="terminal-light terminal-light--maximize" />
             </div>
             <nav className="flex-1 flex items-center justify-between ml-4">
-              <Link
-                to="/"
-                className="text-terminal-fg hover:text-terminal-prompt transition-colors font-bold text-sm sm:text-base"
-              >
-                ~/portfolio
-              </Link>
+            <Link
+              to="/"
+              className="text-terminal-fg hover:text-terminal-prompt transition-colors font-bold text-sm sm:text-base truncate max-w-[40vw] sm:max-w-none"
+            >
+              ~/portfolio
+            </Link>
 
               <div className="hidden sm:flex items-center gap-6 text-sm">
                 <Link
