@@ -60,7 +60,7 @@ export const THEMES: Record<ThemeName, Record<string, string>> = {
 
 export const BOOT_SEQUENCE = [
   { text: 'PORTFOLIO BIOS v2.0.26', delay: 0 },
-  { text: 'Copyright (c) 2026 Developer Portfolio Systems', delay: 100 },
+  { text: 'Copyright (c) 2026 Fullstack Engineer Portfolio Systems', delay: 100 },
   { text: '', delay: 200 },
   { text: 'Initializing creative modules...', delay: 600 },
   { text: '  [OK] React 19 runtime loaded', delay: 800 },
@@ -69,7 +69,7 @@ export const BOOT_SEQUENCE = [
   { text: '  [OK] Animation subsystem online', delay: 1250 },
   { text: '', delay: 1350 },
   { text: 'Loading portfolio data...', delay: 1500 },
-  { text: '  → 5 projects indexed', delay: 1650 },
+  { text: '  → 6 projects indexed', delay: 1650 },
   { text: '  → Skills database connected', delay: 1800 },
   { text: '  → Contact endpoints ready', delay: 1950 },
   { text: '', delay: 2050 },

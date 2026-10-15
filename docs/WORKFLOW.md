@@ -2,7 +2,11 @@
 
 Canonical standard: [eanvest-ltd/eanvest-workflow-standard](https://github.com/eanvest-ltd/eanvest-workflow-standard) (`AGENT_WORKFLOW_STANDARD.md` + `VERSION`).
 
-This portfolio adopts **small-team / Light** profile:
+This portfolio adopts **small-team / Light** profile.
+
+**Git:** integrate on **`dev`**, release with PR **`dev` → `main`** (see `.claude/repo.json`).
+
+Workflow files:
 
 - `.claude/STANDARD_VERSION` — pinned sync version
 - `.claude/hooks/check-standard-drift.sh` — compares against published `VERSION` in CI

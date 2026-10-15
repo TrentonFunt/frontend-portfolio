@@ -1,6 +1,6 @@
-# frontend-portfolio — agent & developer instructions
+# frontend-portfolio — Fullstack Engineer portfolio (agent & developer instructions)
 
-CLI-themed React portfolio (Vite 7, TypeScript strict, Tailwind v4, Framer Motion). Deployed on Vercel; no server secrets or PII in this repo.
+CLI-themed React portfolio (Vite 7, TypeScript strict, Tailwind v4, Framer Motion). Public site for **Tiwalade Adegoke, Fullstack Engineer**. Deployed on Vercel; no server secrets or PII in this repo.
 
 ## Process Profile: Light (set 2026-10-15, bootstrap)
 - **Commit gate:** hooks block absolutes only; review stamp is **advisory** at push (logged to `.claude/advisory-skips.log`).
@@ -59,8 +59,9 @@ src/
 - Do not break keyboard terminal UX or `prefers-reduced-motion` handling.
 
 ## Git flow
-- Feature branch → PR to `main` (solo repo: integration = protected = `main`).
-- Never push directly to `main`; never commit secrets.
+- Day-to-day integration branch: **`dev`** (recorded in `.claude/repo.json`).
+- Feature branch → PR into **`dev`**; release PR **`dev` → `main`** when ready to ship.
+- Never push directly to **`main`** (protected); never commit secrets.
 
 ## Rule → enforcement (Part G stage 9)
 | Rule | Enforcement |

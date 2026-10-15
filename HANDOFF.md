@@ -1,18 +1,22 @@
 # HANDOFF — frontend-portfolio
 
-**Branch:** `main` (workflow standard bootstrap landed locally — commit on a feature branch when ready)  
-**Next step:** Review generated `.claude/` layer + CI; run `git config core.hooksPath .githooks`; open PR.
+**Branch:** `dev` (integration) — ship to production via PR **`dev` → `main`**  
+**Next step:** Merge open PRs into `dev`, then open release PR to `main`.
 
 ## In flight
-- Agent workflow standard v1.19 adoption (CLAUDE.md, hooks, CI, templates).
+- Fullstack Engineer branding + CV sync on `dev`.
+- Workflow standard v1.19 (hooks, CI, CLAUDE layer).
 
-## Open questions
-- Add `STANDARD_TOKEN` + `DRIFT_REQUIRE_FETCH=1` in GitHub if the workflow standard repo is private.
+## Git workflow (from 2026-10-15)
+- Feature work → PR into **`dev`**.
+- Release → PR **`dev` → `main`** only.
+- Never push directly to **`main`**.
 
 ## Pointers
 - Live site: README demo link (Vercel).
-- Workflow docs: `docs/WORKFLOW.md`, org standard on GitHub.
+- Role copy: `src/lib/portfolio-content.ts`.
+- Branch constants: `.claude/repo.json`.
 
 ## Recent decisions
-- **2026-10-15:** Tier small-team, profile Light — solo portfolio, advisory review stamp at push.
-- **2026-10-15:** `integrationBranch` and `protectedBranch` both `main` (no separate `dev` branch).
+- **2026-10-15:** Integration branch **`dev`**, protected **`main`**.
+- **2026-10-15:** Site positioned as **Fullstack Engineer** portfolio (not frontend-only).

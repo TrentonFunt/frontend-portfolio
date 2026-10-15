@@ -1,5 +1,6 @@
 {
   "name": "frontend-portfolio",
+  "description": "Fullstack Engineer portfolio — Tiwalade Adegoke (CLI + GUI)",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -52,7 +52,7 @@ function checkBashCommand(cmd) {
 
   if (pushes) {
     block(
-      `Push to ${protectedBranch} is forbidden — use a feature branch and open a PR.\n`
+      `Push to ${protectedBranch} is forbidden — branch from dev (or a feature branch) and open a PR to dev; release via dev → ${protectedBranch}.\n`
     );
   }
 

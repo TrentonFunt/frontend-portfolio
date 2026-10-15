@@ -1,3 +1,8 @@
+import {
+  formatExperienceTerminal,
+  profile,
+  summaryAbout,
+} from './portfolio-content'
 import { getAllProjects, type Project } from './projects'
 
 export interface CommandOutput {
@@ -97,28 +102,23 @@ export const commands: Command[] = [
       type: 'text',
       content: [
         '',
-        '# Tiwalade Adegoke',
+        `# ${profile.name}`,
         '',
-        'Fullstack Engineer with 2+ years experience building scalable web',
-        'applications across frontend and backend systems. Strong in React,',
-        'TypeScript, ASP.NET Core, and modern UI development — with hands-on',
-        'experience designing RESTful APIs, managing relational databases,',
-        'and implementing secure authentication systems.',
+        summaryAbout,
         '',
-        "I've shipped production code across different domains — from a real",
-        'bakery ordering platform with its own backend infrastructure, to',
-        'fintech platforms, e-learning systems, and physics-based games.',
+        `Status: ${profile.availability}`,
         '',
-        '## Experience',
-        '',
-        '  TheGooeySpot   Fullstack Developer, Owner (2025–Present)',
-        '  Rise Academy   Frontend Engineer (2025)',
-        '  Ampstem        .NET Backend Engineer (2024–2025)',
-        '  Freelance      Wix Website Developer (2023–2024)',
-        '',
-        "Run 'contact' to get in touch.",
+        "Run 'experience' for work history, 'projects' for builds, 'contact' to reach out.",
         '',
       ].join('\n'),
+    }),
+  },
+  {
+    name: 'experience',
+    description: 'Work history and highlights',
+    execute: () => ({
+      type: 'text',
+      content: ['', '# Experience', '', formatExperienceTerminal(), ''].join('\n'),
     }),
   },
   {
@@ -130,10 +130,10 @@ export const commands: Command[] = [
         '',
         '# Contact',
         '',
-        '  Email:    tiwatide23@gmail.com',
+        `  Email:    ${profile.email}`,
         '  GitHub:   github.com/TrentonFunt',
         '  LinkedIn: linkedin.com/in/tiwalade-adegoke',
-        '  Location: Nigeria (Open to Remote)',
+        `  Location: ${profile.location} (${profile.availability})`,
         '',
         "Feel free to reach out, I'd love to hear from you!",
         '',
@@ -149,16 +149,14 @@ export const commands: Command[] = [
         '',
         '# Technical Skills',
         '',
-        '  Frontend     React.js, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS',
-        '  Backend      C# ASP.NET Core, Node.js, PHP (Laravel), SQL, PostgreSQL',
-        '  State        Redux Toolkit, Zustand, TanStack Query, Axios',
-        '  APIs         RESTful API Design, JWT, RBAC',
-        '  Tools        Git, GitHub, Firebase, Figma, Vercel, Docker, Vite, Cursor',
-        '  Testing      Jest, Vitest, React Testing Library, Cypress, NUnit',
+        '  Frontend     React.js, Next.js, TypeScript, Tailwind CSS, Ant Design, GSAP',
+        '  Backend      C# ASP.NET Core, EF Core, Node.js, PHP (Laravel), PostgreSQL, Redis',
+        '  Architecture REST APIs, SOLID, microservices patterns, JWT, RBAC, MFA',
+        '  State        Redux Toolkit, Zustand, TanStack Query',
+        '  Tools        Git, GitHub Actions, Docker, Sentry, Firebase, Figma, Vercel, Vite',
+        '  Testing      Jest, Vitest, RTL, Cypress, NUnit, xUnit',
         '',
-        '  Concepts     Component Architecture, SOLID Principles,',
-        '               Responsive Design, Accessibility,',
-        '               Performance Optimization, Role-Based Access Control',
+        '  Concepts     Performance, Accessibility, Secure auth flows, CI quality gates',
         '',
       ].join('\n'),
     }),
@@ -209,6 +207,7 @@ export const commands: Command[] = [
       content: [
         '',
         'drwxr-xr-x  about.md',
+        '-rw-r--r--  experience.md',
         'drwxr-xr-x  projects/',
         '-rw-r--r--  resume.pdf',
         'drwxr-xr-x  contact.md',
@@ -236,6 +235,10 @@ export const commands: Command[] = [
 
       if (filename === 'about.md' || filename === './about.md') {
         return commands.find((c) => c.name === 'about')!.execute([])
+      }
+
+      if (filename === 'experience.md' || filename === './experience.md') {
+        return commands.find((c) => c.name === 'experience')!.execute([])
       }
 
       if (filename === 'contact.md' || filename === './contact.md') {
@@ -519,9 +522,11 @@ export const commands: Command[] = [
         '',
         '~/portfolio',
         '├── about.md',
+        '├── experience.md',
         '├── contact.md',
         '├── resume.pdf',
         '└── projects/',
+        '    ├── eanvest/',
         '    ├── gooeyspot/',
         '    ├── gbese/',
         '    ├── multilearn/',
@@ -646,7 +651,7 @@ export function getAutocompleteSuggestions(input: string): string[] {
   }
 
   if (commandName === 'cat' || commandName === 'cd') {
-    const files = ['about.md', 'contact.md', 'resume.pdf', 'projects/']
+    const files = ['about.md', 'experience.md', 'contact.md', 'resume.pdf', 'projects/']
     return files.filter((f) => f.startsWith(partial)).slice(0, 5)
   }
 

@@ -9,13 +9,13 @@ interface SeoProps {
 
 export function Seo({
   title,
-  description = 'Bold, playful frontend portfolio showcasing modern web development.',
+  description = 'Fullstack Engineer portfolio — CLI and GUI modes, projects, and contact.',
   image,
   url,
 }: SeoProps) {
   useEffect(() => {
     // Update document title
-    document.title = `${title} | Frontend Portfolio`
+    document.title = `${title} | Fullstack Engineer`
 
     // Update meta tags
     const updateMetaTag = (name: string, content: string) => {

@@ -1,5 +1,5 @@
 {
-  "integrationBranch": "main",
+  "integrationBranch": "dev",
   "protectedBranch": "main",
   "tier": "small-team",
   "profile": "light",
