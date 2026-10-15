@@ -9,6 +9,7 @@ import {
 import { THEMES, BOOT_SEQUENCE, type ThemeName } from '@/lib/terminal-constants'
 import { Confetti, TrainAnimation, RickrollAnimation } from '@/components/TerminalAnimations'
 import resumePdf from '@/assets/TIWALADE-ADEGOKE-Resume.pdf'
+import { isBacktickToggleKey } from '@/lib/keyboard'
 
 interface HistoryEntry {
   id: number
@@ -164,13 +165,8 @@ export function Terminal({ onToggleMode }: TerminalProps) {
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
-      // Disable backtick toggle on mobile
-      if (e.key === '`') {
-        const isMobile = window.innerWidth < 640
-        if (!isMobile) {
-          e.preventDefault()
-          onToggleMode()
-        }
+      if (isBacktickToggleKey(e.nativeEvent)) {
+        e.preventDefault()
         return
       }
 
@@ -227,7 +223,7 @@ export function Terminal({ onToggleMode }: TerminalProps) {
         return
       }
     },
-    [input, suggestions, showSuggestions, selectedSuggestion, historyIndex, commandHistory, handleSubmit, onToggleMode]
+    [input, suggestions, showSuggestions, selectedSuggestion, historyIndex, commandHistory, handleSubmit]
   )
 
   const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {

@@ -5,6 +5,7 @@ import { ScrollProgress } from '@/components/ScrollProgress'
 import { Terminal } from '@/components/Terminal'
 import { GuiThemePicker } from '@/components/GuiThemePicker'
 import { applyGuiTheme, readGuiTheme } from '@/lib/gui-theme'
+import { isBacktickToggleKey } from '@/lib/keyboard'
 import { resolveInitialTerminalMode, writeStoredViewMode } from '@/lib/view-mode'
 
 export interface SiteOutletContext {
@@ -16,8 +17,7 @@ export function SiteLayout() {
   const [wantTerminal, setWantTerminal] = useState(() =>
     resolveInitialTerminalMode(location.pathname, location.search),
   )
-  const isProjectRoute = location.pathname.startsWith('/projects/')
-  const isTerminalMode = wantTerminal && !isProjectRoute
+  const isTerminalMode = wantTerminal
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -37,24 +37,17 @@ export function SiteLayout() {
     })
   }, [])
 
-  // Listen for backtick key to toggle terminal (desktop only)
+  // Backtick toggles CLI ↔ GUI globally (capture phase so it works from terminal input too)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const isMobile = window.innerWidth < 640
-      if (isMobile) return
-
-      if (e.key === '`' && !e.ctrlKey && !e.altKey && !e.metaKey) {
-        const target = e.target as HTMLElement
-        if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
-          return
-        }
-        e.preventDefault()
-        toggleMode()
-      }
+      if (!isBacktickToggleKey(e)) return
+      e.preventDefault()
+      e.stopPropagation()
+      toggleMode()
     }
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    window.addEventListener('keydown', handleKeyDown, true)
+    return () => window.removeEventListener('keydown', handleKeyDown, true)
   }, [toggleMode])
 
   return (
